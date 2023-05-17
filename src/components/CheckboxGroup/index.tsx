@@ -15,13 +15,12 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({ options, defaultChecked, 
 
   const optionsWithSelectAll = showSelectAll ? [SelectAllBtnContent, ...options] : options;
   const { checked, handleCheck } = useCheckboxGroup(options, defaultChecked, onChange);
-  const colStyle: any = {
+  const colStyle = {
     width: `${100 / columns < options.length ? columns : options.length}%`,
     height: '30px',
     minWidth: '100px',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
   };
 
   const groups = [];
@@ -33,7 +32,7 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({ options, defaultChecked, 
       {groups.map((group, i) => (
         <div key={i} style={{ display: 'flex' }}>
           {group.map((option) => (
-            <label key={option} style={colStyle}>
+            <label key={option} style={{...colStyle, whiteSpace: "nowrap"}}>
               <input
                 type="checkbox"
                 checked={checked.includes(option) || checked.length === options.length}
